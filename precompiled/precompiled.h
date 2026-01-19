@@ -1,0 +1,65 @@
+#pragma once
+#define WIN32_LEAN_AND_MEAN
+#define _CRT_SECURE_NO_WARNINGS
+#include <unordered_map>
+#include <map>
+#include <string>
+#include <Windows.h>
+#include <libloaderapi.h>
+#include <cstdint>
+#include <type_traits>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <vector>
+#include <format>
+#include <dxgi.h>
+#include <stdint.h>
+#include <d3d11.h>
+#include <tchar.h>
+#include <algorithm>
+#include <array>
+#include <stdio.h>
+#include <d3dcompiler.h>
+#include <windowsx.h>
+#include <dwmapi.h>
+#include <xinput.h>
+#include <stdlib.h>
+#include <math.h>
+#include <cmath>
+#include <limits>
+#include <xmmintrin.h>
+#include <bit>
+#include <cstring>
+#include <random>
+#include <mutex>
+#include <functional>
+#include <float.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <deque>
+#include <immintrin.h>
+#include <cstddef>
+#include <utility>
+#include <DirectXMath.h>
+#include <initializer_list>
+#include <iterator>
+#include <winternl.h>
+#include <TlHelp32.h>
+#include <codecvt>
+#include <shobjidl.h>
+#include <thread>
+
+#pragma comment(lib, "ole32.lib")
+#pragma comment(lib, "shell32.lib")
+
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/imgcodecs.hpp>
+
+#include "../UI/Misc/Fonts/Fonts.hpp"
+#include "../UI/Misc/ImGui/imgui.h"
+#include "../UI/Misc/ImGui/backends/imgui_impl_win32.h"
+#include "../UI/Misc/ImGui/backends/imgui_impl_dx11.h"
+#include "../UI/Misc/ImGui/imgui_internal.h"
+#include "../UI/UI.hpp"

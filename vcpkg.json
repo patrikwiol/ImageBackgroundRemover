@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    {
+      "name": "opencv4",
+      "default-features": false,
+      "features": [
+        "png",
+        "jpeg"
+      ]
+    }
+  ]
+}
