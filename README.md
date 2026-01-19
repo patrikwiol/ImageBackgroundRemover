@@ -1,5 +1,11 @@
 # Image Background Remover
 
+## Features
+- Remove a background from an image
+- Remove outlining/halo effect from the foreground
+- Customize several options about the background removal process
+- Works best with specific color removal
+
 ## Building Source
 - Make sure you have DirectX 11 SDK installed
 - Open command prompt in project root
