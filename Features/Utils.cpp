@@ -114,10 +114,10 @@ cv::Mat Utils::RemoveBackground(cv::Mat src, Options options)
 		cv::Mat hsv;
 		cv::cvtColor(src, hsv, cv::COLOR_BGR2HSV);
 
-		cv::Scalar targetCol(options.specificColor.Value.x * 255.f, options.specificColor.Value.y * 255.f, options.specificColor.Value.z * 255.f);
+		cv::Scalar targetCol(options.specificColor.Value.z * 255.f, options.specificColor.Value.y * 255.f, options.specificColor.Value.x * 255.f);
 		cv::Mat targetMat(1, 1, CV_8UC3, targetCol);
 		cv::Mat targetHSV;
-		cv::cvtColor(targetMat, targetHSV, cv::COLOR_RGB2HSV);
+		cv::cvtColor(targetMat, targetHSV, cv::COLOR_BGR2HSV);
 		cv::Vec3b hsvCenter = targetHSV.at<cv::Vec3b>(0, 0);
 
 		float invAcc = 1.0f - options.accuracy;
@@ -128,11 +128,8 @@ cv::Mat Utils::RemoveBackground(cv::Mat src, Options options)
 		cv::Scalar lower(hsvCenter[0] - hTol, hsvCenter[1] - sTol, hsvCenter[2] - vTol);
 		cv::Scalar upper(hsvCenter[0] + hTol, hsvCenter[1] + sTol, hsvCenter[2] + vTol);
 
-		int sMax = (int)(255 * (1.0f - options.accuracy));
-		int vMin = (int)(255 * options.accuracy);
-
 		cv::Mat colorMask;
-		cv::inRange(hsv, cv::Scalar(0, 0, vMin), cv::Scalar(180, sMax, 255), colorMask);
+		cv::inRange(hsv, lower, upper, colorMask);
 
 		cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
 		cv::morphologyEx(colorMask, colorMask, cv::MORPH_CLOSE, kernel);
@@ -165,7 +162,7 @@ cv::Mat Utils::RemoveBackground(cv::Mat src, Options options)
 	if (options.downscaleImage)
 		cv::resize(src, newMat, cv::Size(), 0.5, 0.5);
 
-	cv::Rect rect(5, 5, newMat.cols - 10, newMat.rows - 10);
+	cv::Rect rect(1, 1, newMat.cols - 2, newMat.rows - 2);
 	cv::Mat bgModel, fgModel, mask;
 
 	cv::grabCut(newMat, mask, rect, bgModel, fgModel, options.iterations, cv::GC_INIT_WITH_RECT);
